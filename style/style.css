@@ -1,0 +1,138 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* Настройки для всей страницы >> */
+html, body {
+	margin: 0; padding: 0;
+	font: 18px Verdana, Geneva, sans-serif;
+	background-color: rgb(214,235,174);
+}
+/* << */
+
+/* Настройки для блока общего контента >> */
+#content {
+	width: 80%;
+	margin: 0 auto; padding:0;
+}
+/* << */
+
+/* Настройки для блока с элементами калькулятора >> */
+#price_block {
+	width: 50%;
+	margin: 1.5em auto;
+	padding:0.5em 1%;
+	border-radius: 1em;
+	border:0.11em groove rgba(0,0,0,0.5);
+	box-shadow: -0.11em -0.11em 0.3em 0 rgba(0,0,0,0.5);
+	background-color: rgb(255,255,255);
+}
+/* << */
+
+/* Задаём общие настройки для всех элементов формы (в которой находиться калькулятор) >> */
+fieldset { border: none; } 
+select, input {
+	padding: 0.16em;
+	margin-left: 2%;
+	font-size: 90%;
+	border-radius: 0.45em;
+	background-color: rgba(0,0,0,0.05);
+}
+input[type="number"], select {
+	width: 50%;
+}
+label {font-size: 90%;}
+/* << */
+
+/* Задаём настройки основных блоков калькулятора >> */
+.form_element { /* <- Блок содержащий текст и поле формы для калькулятора */
+	position: relative;
+	width: 90%;
+	margin-bottom: 1.5em; padding-bottom: 0.65em;
+	line-height: 130%;
+	border-bottom: 0.2em rgba(0,0,0,0.75) groove;
+	border-radius: 0 0 0.75em 0.75em;
+}
+.element_header {/* <- Название поля формы для калькулятора */
+	font-weight: 600;
+}
+/* << */
+
+/* Задаём настройки отображения итоговой стоимости калькулятора >> */
+.summ_block { /* <- Блок, используемый для отображения информации по итоговой стоимости калькулятора */
+	position: fixed; /* <- Позиционируем блок относительно окна браузера, чтобы при прокрутке страницы с калькулятором итоговая стоимость не пропадала */
+	display: inline-block;
+	margin:0; padding: 0.8em 1.5em 0.8em 0.3em;
+	top: 0; right: 0;
+	border-left: 0.11em groove rgba(0,0,0,0.5);
+	border-bottom: 0.11em groove rgba(0,0,0,0.5);
+	border-radius:0 0 0 0.7em;
+	box-shadow: -0.11em 0.11em 0.3em 0 rgba(0,0,0,0.5);
+	background-color: rgb(255,255,255);
+}
+#total_summ { /* <- Элемент, в котором непосредственно будет отображаться итоговая стоимость */
+	display: block;
+	margin-top: 0.5em;
+	text-align: right;
+	font-weight: normal;
+}
+/* << */
+
+.originally_hidden_block[id] { display: none; } /* <- Скрываем блоки с полями формы, которые должны быть скрыты(класс originally_hidden_block). В качестве доп. проверки добавляем наличие id, чтобы их можно было отобразить без дополнительных сложностей при помощи js */
+
+/* Задаём настройки для блока, используемого для демонстрации стоимости текущего элемента калькулятора >> */
+#current_price { 
+	display:inline-block; /* <- Опредляем его отображение, как строчно-блочный, чтобы его ширина соответствовала его контенту */
+	position: absolute;/* <- Позиционируем так, чтобы его можно было свободно расположить внутри родителя */
+	right:0; bottom: 0;/* <- Определяем для него место в правом нижнем углу родительского блока */
+	padding: 0.25em 0.4em;
+	text-align: right;
+	font-size: 80%;
+	border-left: 0.2em rgba(255,0,0,0.75) groove;
+	border-top: 0.2em rgba(255,0,0,0.75) groove;
+	border-radius:0.5em 0.5em 0 0.5em;
+	background-color: rgba(255,255,255,0.9);
+}
+/* << */
+
+/* >> Далее определяются настройки адаптивности для устройств различной ширины экрана << */
+/* >> Все настройки, указаные ранее завязаны, либо на размера шрифта, либо на ширине, поэтому большая часть изменений будет касаться именно их << */
+
+/* Задаём настройки для более широких экранов >> */
+@media only screen and (min-width: 1800px) {
+	body { font-size: 26px; } /* <- Здесь и далее для body изменяем размер шрифта под более широкий размер окна браузера */
+	#content { max-width: 1500px; } /* <- Здесь и далее для блока общего конетнта задаём максимальную ширину, чтобы блок общего контента не растягивался больше требуемого */
+}
+@media only screen and (min-width: 2400px) {
+	body { font-size: 34px; }
+	#content { max-width: 2000px; }
+}
+@media only screen and (min-width: 3200px) {
+	body { font-size: 42px; }
+	#content { max-width: 2300px; }
+}
+@media only screen and (min-width: 4000px) {
+	body { font-size: 52px; }
+	#content { max-width: 3100px; }
+}
+/* << */
+
+/* Задаём настройки для менее широких экранов (смартфоны с горизонт. положением экрана) >> */
+@media screen and (max-width: 900px) {
+	#price_block { width: 65%; }
+	#content { width: 100%; }
+	#current_price { z-index: 2; } /* <- Для элемента демонстрирующего текущую стоимость задаём положение на оси z таким образом, чтобы при пересечении с блоком итоговой стоимости данный элемент перекрывал его */
+}
+/* << */
+
+/* Задаём настройки для менее широких экранов (смартфоны с вертик. положением экрана) >> */
+@media screen and (max-width: 600px) {
+	body { font-size: 16px; }
+	#price_block {/* <- Меняем настройки блока, содержащего весь калькулятор стоимости таким образом, чтобы он мог органично вписаться в узкий экран */
+		width: 75%;
+		margin-left: 0; /* <- Прижимаем к левой части окна браузера */
+		border-left: none; /* <- Убираем левую границу, т.к. блок прижат к левому краю */
+		border-radius:0 1em 1em 0;/* <- Меняем скругление углов, опять-таки с учетом изменения положения блока */
+	}
+	.summ_block { font-size: 80%; }
+}
+/* << */

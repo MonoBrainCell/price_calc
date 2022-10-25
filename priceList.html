@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Калькулятор стоимости</title>
+<link rel="stylesheet" type="text/css" href="style/style.css">
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<!-- Подключаем js с классом калькулятора стоимости -->
+<script type="text/javascript" src="js/сostDeterminant.class.js"></script>
+<!-- Подключаем js с функциями-обработчиками для работы калькулятора -->
+<script type="text/javascript" src="usage_example/calculator.funcs.js"></script>
+</head>
+
+<body>
+<div id="content">
+    <form action="#" name="calculate" method="post">
+        <div id="price_block">
+		
+            <fieldset class="form_element">
+                <legend class="element_header">Выберите тип сайта:</legend>
+                <select name="site_type" class="cost_component">
+                    <option value="visitcard" data-price="3000">Визитка</option>
+                    <option value="standart" data-price="8000">Стандартный сайт</option>
+                    <option value="store" data-price="20000">Интернет-магазин</option>
+                    <option value="portal" data-price="50000">Интернет-портал</option>
+                </select>
+            </fieldset>
+            
+            <fieldset class="form_element">
+                <legend class="element_header">Нужен дизайн?</legend>
+                <input type="checkbox" name="design" id="design_field" class="cost_component" value="yes" data-price="5000">
+                <label for="design_field">Да, нужен</label>
+            </fieldset>
+			
+			<!-- Блок, который будет появляться в зависимости от значения поля site_type. Начало -->
+            <div id="simple_site" class="originally_hidden_block">
+                <fieldset class="form_element">
+                    <legend class="element_header">Нужна административная часть?</legend>
+                    <input type="checkbox" name="admin" id="admin_field" class="cost_component" value="yes" data-price="2000">
+                    <label for="admin_field">Да, нужна</label>
+                </fieldset>
+                
+                <fieldset class="form_element">
+                    <legend class="element_header">Нужна страница отзывов?</legend>
+                        <input type="checkbox" name="reviews" id="reviews_field" class="cost_component" value="yes" data-price="2000">
+                        <label for="reviews_field">Да, нужна</label>
+                </fieldset>
+                
+                <fieldset class="form_element">
+                    <legend class="element_header">Нужна форма обратной связи?</legend>
+                        <input type="checkbox" name="mailtome" id="mailtome_field" class="cost_component" value="yes" data-price="1000">
+                        <label for="mailtome_field">Да, нужна</label>
+                </fieldset>
+            </div>
+            <!-- Конец блока -->
+			
+            <fieldset class="form_element">
+                <legend class="element_header">Нужно подобрать и зарегистрировать домен?</legend>
+                <input type="checkbox" name="regdom" id="regdom_field" class="cost_component" value="yes" data-price="2500">
+                <label for="regdom_field">Да, нужно</label>
+            </fieldset>
+            
+            <fieldset class="form_element">
+                <legend class="element_header">Нужно подобрать хостинг и зарегистрировать на нём?</legend>
+                <input type="checkbox" name="reghost" id="reghost_field" class="cost_component" value="yes" data-price="1000">
+                <label for="reghost_field">Да, нужно</label>
+            </fieldset>
+            
+            <fieldset class="form_element">
+                <legend class="element_header">Нужна поддержка сайта?</legend>
+                <select name="support">
+                    <option value="no">Нет</option>
+                    <option value="yes">Да</option>
+                </select>
+            </fieldset>
+        
+			<!-- Блок, появляющийся в случае, если нужна поддержка сайта(см. поле выше). Начало -->
+            <div id="support_true" class="originally_hidden_block">
+                <fieldset class="form_element">
+                    <legend class="element_header">Периодичность поддержки</legend>
+                    <input type="radio" name="periodic" id="each_day_periodic" class="cost_component" value="each_day" data-price="5000">
+                    <label for="each_day_periodic">Каждый день</label>
+					<br>
+                    <input type="radio" name="periodic" id="each_week_periodic" class="cost_component" value="each_week" data-price="3000">
+                    <label for="each_week_periodic">Каждую неделю</label>
+					<br>
+                    <input type="radio" name="periodic" id="each_2weeks_periodic" class="cost_component" value="each_2weeks" data-price="2000">
+                    <label for="each_2weeks_periodic">Каждые 2 недели</label>
+					<br>
+                    <input type="radio" name="periodic" id="each_month_periodic" class="cost_component" value="each_month" data-price="1500">
+                    <label for="each_month_periodic">Каждый месяц</label>
+                </fieldset>
+            </div>
+            <!-- Конец блока -->
+			
+            <fieldset id="pages_quantity" class="form_element originally_hidden_block">
+                <legend class="element_header">Первоначальное количество страниц</legend>
+                <input type="number" name="quantity" class="cost_component" value="0" data-price-factor="100">
+            </fieldset>
+            
+            <fieldset class="form_element">
+                <legend class="element_header">Выберите вариант скидки</legend>
+                <select name="discount" class="cost_component">
+                    <option value="none" data-price="1">...</option>
+                    <option value="new_client" data-price="0.85">Я новый клиент (15%)</option>
+                    <option value="regular_customer" data-price="0.9">Я постоянный клиент (10%)</option>
+                    <option value="vip_customer" data-price="0.75">Я vip-клиент (25%)</option>
+                </select>
+            </fieldset>
+            
+            <div class="element_header summ_block">Общая сумма: <span id="total_summ"></span></div>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
