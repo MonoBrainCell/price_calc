@@ -39,4 +39,5 @@
             <li><a href="https://github.com/MonoBrainCell/price_calc/blob/main/example/usage_example/calculator.funcs.js" target="_blank">calculator.funcs.js</a> - js-файл, в котором реализуется калькулятор</li>
         </ul>
     </li>
+    <li><a href="https://github.com/MonoBrainCell/price_calc/tree/main/example/priceList.html" target="_blank">priceList.html</a> - страница с демонстрацией работы калькулятора</li>
 </ul>
