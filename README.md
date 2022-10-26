@@ -41,3 +41,9 @@
     </li>
     <li><a href="https://github.com/MonoBrainCell/price_calc/tree/main/example/priceList.html" target="_blank">priceList.html</a> - страница с демонстрацией работы калькулятора</li>
 </ul>
+<h2>Демонстрация работы калькулятора</h2>
+<div>
+<a href="https://github.com/MonoBrainCell/price_calc/blob/main/demo_images/calc_demo.gif" title="Кликни для перехода оригинальному размеру">
+<img src="demo_images/calc_demo.gif" width="800">
+</a>
+</div>
