@@ -44,6 +44,6 @@
 <h2>Демонстрация работы калькулятора</h2>
 <div>
 <a href="https://github.com/MonoBrainCell/price_calc/blob/main/demo_images/calc_demo.gif" title="Кликни для перехода оригинальному размеру">
-<img src="demo_images/calc_demo.gif" width="800">
+<img src="demo_images/calc_demo.gif" alt="работа калькулятора">
 </a>
 </div>
